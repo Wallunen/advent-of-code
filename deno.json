@@ -1,6 +1,7 @@
 {
 	"importMap": "import_map.json",
 	"tasks": {
+		"commit": "deno run --allow-run=git scripts/commit.ts",
 		"do": "deno run --allow-run=deno --allow-read=years/ scripts/do.ts",
 		"new": "deno run --allow-run=powershell,pbpaste,xclip --allow-write=years/ scripts/new.ts"
 	}

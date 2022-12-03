@@ -1,7 +1,7 @@
 import {Command} from 'cliffy/command/mod.ts';
 
 const {args} = await new Command()
-	.name('new')
+	.name('do')
 	.arguments('<part:string> [day:string] [year:string]')
 	.parse();
 

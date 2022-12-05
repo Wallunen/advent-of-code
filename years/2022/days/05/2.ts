@@ -6,17 +6,14 @@ for (const line of getInput(import.meta).split('\n')) {
 	if (line.startsWith('m')) {
 		const words = line.split(' ');
 
-		let [amount, source, destination] = [1, 3, 5].map(index =>
+		const [amount, source, destination] = [1, 3, 5].map(index =>
 			Number.parseInt(words[index], 10),
 		);
 
-		--source;
-		--destination;
-
-		const sourceStack = stacks[source];
+		const sourceStack = stacks[source - 1];
 		const crates = sourceStack.splice(sourceStack.length - amount, amount);
 
-		stacks[destination].push(...crates);
+		stacks[destination - 1].push(...crates);
 	} else {
 		const crates = line.split(/ {1,4}/).flatMap(crate => {
 			const trimmed = crate.trim();

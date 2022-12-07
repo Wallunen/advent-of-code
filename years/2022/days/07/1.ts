@@ -25,15 +25,17 @@ for (const line of getInput(import.meta).split('\n')) {
 	} else if (isOutput) {
 		const fileSize = line.slice(0, line.indexOf(' '));
 
-		if (fileSize && fileSize !== 'dir') {
-			const parsedSize = Number.parseInt(fileSize, 10);
+		if (!fileSize || fileSize === 'dir') {
+			continue;
+		}
 
-			for (let i = 1; i <= currentPath.length; ++i) {
-				const joinedPath = currentPath.slice(0, i).join('/');
-				const previousSize = directorySizes.get(joinedPath) ?? 0;
+		const parsedSize = Number.parseInt(fileSize, 10);
 
-				directorySizes.set(joinedPath, previousSize + parsedSize);
-			}
+		for (let i = 1; i <= currentPath.length; ++i) {
+			const joinedPath = currentPath.slice(0, i).join('/');
+			const previousSize = directorySizes.get(joinedPath) ?? 0;
+
+			directorySizes.set(joinedPath, previousSize + parsedSize);
 		}
 	}
 }

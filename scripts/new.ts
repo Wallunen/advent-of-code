@@ -15,20 +15,34 @@ const directory = `years/${year}/days/${day}`;
 
 Deno.mkdirSync(directory, {recursive: true});
 
-const promises = [1, 2].map(part =>
-	Deno.writeTextFile(`${directory}/${part}.ts`, '', {append: true}),
-);
-
-if (options.clipboard) {
-	promises.push(
-		writeAll(
-			Deno.openSync(`${directory}/input.txt`, {
+const encoder = new TextEncoder();
+const promises: Array<Promise<unknown>> = [
+	Promise.allSettled(
+		[1, 2].map(part =>
+			Deno.open(`${directory}/${part}.ts`, {
 				write: true,
 				createNew: true,
 			}),
-			new TextEncoder().encode((await clipboard.read_text()) + '\n'),
+		),
+	).then(([firstPart]) => {
+		if (firstPart.status === 'fulfilled') {
+			return writeAll(
+				firstPart.value,
+				encoder.encode("import getInput from '/get-input.ts';\n"),
+			);
+		}
+	}),
+];
+
+if (options.clipboard) {
+	promises.push(
+		Deno.open(`${directory}/input.txt`, {
+			write: true,
+			createNew: true,
+		}).then(async file =>
+			writeAll(file, encoder.encode((await clipboard.read_text()) + '\n')),
 		),
 	);
 }
 
-await Promise.all(promises);
+await Promise.allSettled(promises);

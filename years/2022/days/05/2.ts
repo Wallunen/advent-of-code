@@ -15,10 +15,7 @@ for (const line of getInput(import.meta).split('\n')) {
 
 		stacks[destination - 1].push(...crates);
 	} else {
-		const crates = line.split(/ {1,4}/).flatMap(crate => {
-			const trimmed = crate.trim();
-			return trimmed.startsWith('[') ? [trimmed[1]] : [undefined];
-		});
+		const crates = line.split(/ {1,4}/).map(crate => crate[1]);
 
 		for (const [i, crate] of crates.entries()) {
 			if (!crate) {

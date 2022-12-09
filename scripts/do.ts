@@ -1,4 +1,4 @@
-import {Command} from 'cliffy/command/mod.ts';
+import {Command} from 'cliffy/command/command.ts';
 
 const {args} = await new Command()
 	.name('do')

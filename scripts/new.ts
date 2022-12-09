@@ -1,4 +1,4 @@
-import {Command} from 'cliffy/command/mod.ts';
+import {Command} from 'cliffy/command/command.ts';
 import {clipboard} from 'https://deno.land/x/clippy@v0.2.0/platform/mod.ts';
 import {writeAll} from 'std/streams/write_all.ts';
 

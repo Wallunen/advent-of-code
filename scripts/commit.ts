@@ -1,4 +1,4 @@
-import {Command} from 'cliffy/command/mod.ts';
+import {Command} from 'cliffy/command/command.ts';
 
 const {args, options} = await new Command()
 	.name('commit')

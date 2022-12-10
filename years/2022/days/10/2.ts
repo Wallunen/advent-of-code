@@ -10,7 +10,7 @@ const cycleThrough = (amount: number) => {
 			? '#'
 			: '.';
 
-		if (pixelCount++ === 39) {
+		if (++pixelCount === 40) {
 			image += '\n';
 			pixelCount = 0;
 		}

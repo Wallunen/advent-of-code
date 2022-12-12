@@ -22,8 +22,8 @@ for (const line of getInput(import.meta).split('\n')) {
 				continue;
 			}
 
-			const previous = stacks[i] ?? [];
-			stacks[i] = [crate, ...previous];
+			stacks[i] ??= [];
+			stacks[i].unshift(crate);
 		}
 	}
 }

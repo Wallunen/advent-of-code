@@ -16,7 +16,7 @@ const lines = getInput(import.meta)
 	.split('\n')
 	.map((line, i) => {
 		const tokens: Token[] = [];
-		let token: Token | undefined = undefined;
+		let token: Token | undefined;
 
 		for (const [j, character] of line.split('').entries()) {
 			if (token) {

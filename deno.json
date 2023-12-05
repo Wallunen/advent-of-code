@@ -3,6 +3,7 @@
 	"tasks": {
 		"do": "deno run --allow-run=deno scripts/do.ts",
 		"commit": "deno run --allow-run=git scripts/commit.ts",
+		"test": "deno run --allow-read=years/ --allow-run=deno scripts/test.ts",
 		"new": "deno run --allow-run=powershell,pbpaste,xclip --allow-write=years/ scripts/new.ts"
 	}
 }
